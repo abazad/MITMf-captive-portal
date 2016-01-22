@@ -14,14 +14,11 @@ This command modifies all HTTP (80/tcp) responses and overwrites everything with
 If your are running a wifi access point you can use the following command (no spoofing required).
 `python mitmf.py -i wlan0 --log-level info --portal --portalurl http://www.evil.com`
 
-# Workflow
+# Captive Portal Workflow
 1. Client associates to the AP
 2. Client starts a browser and generates ARP/DNS/HTTP traffic
-3. HTTP gets captured by the Controller and then redirected to External CP server URL
-4. Client sends a HTTP GET to the External CP server
-5. External CP server sends XML-API to query where this client is coming from so that the CP server can provide location-based information
-6. Client sees the login page and clicks accept
-7. External CP server takes the accept and then send the XML-API user add to the controller and have the user role change
+3. HTTP gets captured by the Controller and then redirected to CP server URL
+4. Client sends a HTTP GET to the CP server
 
 # Links
 ## MITMf Intro
