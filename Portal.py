@@ -1,4 +1,3 @@
-# Some of this code was stolen from https://jordan-wright.github.io/blog/2013/11/15/wireless-attacks-with-python-part-one-the-airpwn-attack/
 
 import threading
 import logging
@@ -77,11 +76,10 @@ class Portal(Plugin):
         else:
             sys.exit("[-] Error reading template file {}".format(path))
 
-
     def options(self, options):
-        options.add_argument('--portalurl', type=str, dest='portalurl', help='URL of the captive-portal.')
-        options.add_argument('--portaldns', action='store_true', dest='portaldns', help='Hijack DNS records with captive-portal IP.')
-        options.add_argument('--portaltemplate', type=str, dest='portaltemplate', help='URL of the captive-portal.')
+        options.add_argument('--portalurl', type=str, dest='portalurl', help='URL of the captive-portal. All requests to this host are allowed with this option.')
+        options.add_argument('--portaldns', action='store_true', dest='portaldns', help='Hijack DNS records with captive-portal IP and CNAME.')
+        options.add_argument('--portaltemplate', type=str, dest='portaltemplate', help='Local CP file. Should have everything required inline, because of the way this option works.')
         #TODO: Define captive-portal template
 
     def response(self, response, request, data):
