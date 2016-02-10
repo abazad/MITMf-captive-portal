@@ -239,6 +239,7 @@ class Portal(Plugin):
         '''This will be called when shutting down'''
         from core.utils import iptables
         iptables().flush()
+        #FIXME: add forwarding rules if we are an access point
 
         pass
 
@@ -250,7 +251,7 @@ class Portal(Plugin):
     def _block_traffic(self):
         self.log.debug("Setting up iptables")
         #TODO: limit to target IPs
-        os.system('iptables -t nat -A PREROUTING -p tcp --destination-port 443 -j REJECT')
+        os.system('iptables -t filter -I FORWARD -p tcp --destination-port 443 -j REJECT')
         
 
     def _check_walledgarden(self, request):
