@@ -49,7 +49,11 @@ class Portal(Plugin):
                 sys.exit("[-] Error parsing portal url: %s" % e)
 
             # get portal url ip address
-            self.portal_ip = socket.gethostbyname('google.com') #TODO: better method, scapy?
+            self.log.debug("Captival portal at {}".format(self.portal_url.hostname))
+            try:
+                self.portal_ip = socket.gethostbyname(self.portal_url.hostname) #TODO: better method, scapy?
+            except socket.gaierror, e:
+                sys.exit("[-] Portal cannot resolve hostname: {}".format(e))
 
             if options.portaldns:
                 #TODO: if options.portaldns
