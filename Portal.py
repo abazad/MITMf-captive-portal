@@ -57,7 +57,7 @@ class Portal(Plugin):
                 t2.setDaemon(True)
                 t2.start()
         else:
-            sys.exit("[-] DNS records require portal url or portal template: %s" % e)
+            sys.exit("[-] Portal requires portal url or portal template")
 
         #running on an access point
         from core.utils import iptables
